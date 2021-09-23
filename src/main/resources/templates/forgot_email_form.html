@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>This is Forgot Page</title>
+</head>
+<body>
+	<section>
+		<div id="login">
+
+			<div class="container">
+				<div id="login-row"
+					class="row justify-content-center align-items-center">
+					<div id="login-column" class="col-md-6">
+						<div id="login-box" style="height: 220px;" class="col-md-12">
+
+							<div th:if="${session.message}" class="container">
+
+								<!-- th:classappend="${'alert-'+session.message.type} it will give the type of message seccess or danger -->
+
+								<div class="alert alert-danger my-2  text-center" role="alert">
+									<span th:text="${session.message}"></span>
+								</div>
+
+								<!-- removing the message so that it won't show in other pages -->
+
+								<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+
+							</div>
+
+							<!-- email form -->
+							<h3 class="text-center m-3">Your Registered Email</h3>
+
+							<form th:action="@{/send-otp}" method="post">
+
+
+								<div class="form-group">
+
+
+									<input type="email" placeholder="enter email here"
+										class="form-control" required="required" name="email" />
+
+								</div>
+
+								<div class="container text-center m-3">
+
+									<button class="btn btn-warning">Send OTP</button>
+
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>This is About Page</title>
+</head>
+<body>
+	<section>
+
+		<div class="card mr-3 ml-3">
+
+			<div class="card-body">
+
+				<h1 class="text-center">Update Your Profile</h1>
+				<div class="container-fluid mt-1">
+
+					<div class="row">
+
+						<div class="col-md-8 offset-md-2">
+
+
+							<form action="" th:object="${user}" enctype="multipart/form-data"
+								method="post" th:action="@{/user/update-user}" class="mt-2">
+
+
+								<!-- adding this field for update user -->
+								<input type="hidden" th:value="${user.id}" name="id">
+
+
+								<!-- first name -->
+
+								<div class="input-group">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text">
+
+
+
+											<i class="fa fa-plus"></i>
+
+										</div>
+
+
+									</div>
+
+
+									<input th:value="${user.name}" required="required" type="text"
+										id="firstName" name="name" placeholder="Enter Name here"
+										class="form-control">
+
+								</div>
+
+
+
+
+
+								<!-- email -->
+
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text">@</div>
+
+
+									</div>
+
+
+									<input th:value="${user.email}" required="required"
+										type="email" id="email" name="email"
+										placeholder="Enter Email here" class="form-control">
+
+								</div>
+
+
+
+
+								<!-- description-->
+
+								<div class="input-group mt-3">
+
+
+									<textarea th:text="${user.aboutUser}"
+										placeholder="Enter Contact description" class="form-control"
+										name="aboutUser" id="description" rows="10"></textarea>
+
+								</div>
+
+								<!-- image -->
+
+								<!-- adding this tag for showing image in the case of update -->
+								<div class="container text-center">
+
+									<img style="width: 250px; height: 250px;"
+										class="img-fluid my-profile" alt=""
+										th:src="@{'/image/'+${user.imageUrl}}">
+
+								</div>
+
+								<div class="custom-file">
+
+									<!-- we are using the url instead of imageUrl -->
+									<input type="file" name="url">
+
+
+								</div>
+
+								<div class="container text-center mt-3">
+
+									<button class="btn btn-outline-primary">Save User</button>
+
+								</div>
+
+							</form>
+
+
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</body>
+</html>
